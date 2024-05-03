@@ -1,0 +1,425 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #c1c1c1;
+}
+
+.main-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 40px;
+
+
+    .sidebar {
+        width: 30%;
+        height: 100vh;
+        background-color: #fff;
+        padding: 2rem 4rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+
+        .logo {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 40%;
+                height: auto;
+            }
+        }
+
+        .menu {
+            width: 100%;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            gap: 20px;
+
+            .all-Task,
+            .setting {
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-direction: row;
+                gap: 20px;
+
+                img {
+                    width: 25%;
+                    height: auto;
+                }
+
+                button {
+                    width: 70%;
+                    height: 40px;
+                    background-color: transparent;
+                    border: none;
+                    text-align: start;
+                    border-radius: 10px;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    padding: 0 1rem;
+                    color: #acaaae;
+
+                    &:hover {
+                        color: #000;
+                        background-color: #f4f4f4;
+                    }
+                }
+            }
+
+            .select {
+                width: 50%;
+                position: relative;
+
+                select {
+                    display: none;
+                }
+            }
+
+            .select-selected {
+                background-color: transparent;
+                color: #acaaae;
+                font-size: 1.3rem;
+                font-weight: 600;
+
+                &:after {
+                    position: absolute;
+                    content: "";
+                    top: 14px;
+                    right: 10px;
+                    width: 0;
+                    height: 0;
+                    border: 6px solid transparent;
+                    border-color: #acaaae transparent transparent transparent;
+                }
+
+                &.select-arrow-active {
+                    &:after {
+                        border-color: transparent transparent #000 transparent;
+                        top: 7px;
+                    }
+                }
+            }
+
+            .select-items div,
+            .select-selected {
+                color: #acaaae;
+                padding: 8px 16px;
+                border: 1px solid transparent;
+                border-color: transparent transparent #acaaae transparent;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .select-items {
+                position: absolute;
+                background-color: #f4f4f4;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 99;
+            }
+
+            .select-hide {
+                display: none;
+            }
+
+            .select-items div:hover,
+            .same-as-selected {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .setting {
+                justify-content: start !important;
+
+                h1 {
+                    font-size: 1.5rem;
+                    color: #acaaae;
+                }
+            }
+
+
+
+        }
+
+        .logout {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 20px;
+            position: absolute;
+            bottom: 0;
+
+            img {
+                width: 10%;
+                height: auto;
+
+            }
+
+            button {
+                width: 70%;
+                height: 40px;
+                background-color: transparent;
+                border: none;
+                text-align: start;
+                border-radius: 10px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                padding: 0 1rem;
+                color: #acaaae;
+
+                &:hover {
+                    color: #000;
+                }
+            }
+        }
+    }
+
+
+
+}
+
+.Task-main {
+    height: 100vh;
+    overflow: hidden;
+    width: 70%;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+
+    .title {
+        width: 100%;
+        height: fit-content;
+        text-align: center;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+
+        }
+
+    }
+
+    .nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+
+        .content {
+            font-size: 2rem;
+        }
+
+        .filter {
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            flex-direction: row;
+            gap: 20px;
+
+            button {
+                font-size: 1rem;
+                padding: .8rem 1.5rem;
+                color: #000000;
+                background-color: #f4f4f4;
+                border: 1px solid #acaaae;
+                border-radius: .5rem;
+            }
+        }
+    }
+
+    .task-list {
+        width: 100%;
+
+        ul {
+            width: 60vw;
+            height: 60vh;
+            overflow-y: scroll;
+            list-style: none;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            flex-direction: column;
+            gap: 20px;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            li {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #fff;
+                padding: 1rem;
+                border-radius: 1rem;
+
+                &.checked {
+                    background-image: url('../assets/done.png');
+                    background-size: contain;
+                    opacity: 0.5 !important;
+                    color: #000 !important;
+                }
+
+                .round {
+                    position: relative;
+                    width: 20px;
+                    height: 20px;
+
+                    input[type="checkbox"] {
+                        appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        border: 2px solid #ccc;
+                        outline: none;
+                        cursor: pointer;
+                    }
+
+                    input[type="checkbox"]:checked {
+                        background-color: #21f325;
+
+                        &::before {
+                            content: "\2713";
+                            display: block;
+                            text-align: center;
+                            color: #fff;
+                            font-weight: bold;
+                            line-height: 16px;
+                        }
+                    }
+                }
+
+
+
+
+
+
+                .task-content {
+                    width: 100vw;
+                    text-align: start;
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                    gap: 20px;
+                    flex-direction: column;
+
+                    h1 {
+                        font-size: 1.5rem;
+                        font-weight: 900;
+                        color: #545961;
+                    }
+
+                    h2 {
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        color: #545961;
+
+                        span {
+                            display: inline-block;
+                            height: 20px;
+                            width: 20px;
+                            border-radius: .3rem;
+                            margin-right: 1rem;
+                        }
+
+
+                    }
+                }
+
+                .action-btn {
+                    width: 100%;
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+                    gap: 20px;
+
+                    button {
+                        padding: 1rem;
+                        background-color: transparent;
+                        border: none;
+                        margin-left: -10px;
+
+                        img {
+                            width: 200%;
+                            height: auto;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+
+
+    .add-task {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+
+        button {
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border: 1px solid #545961;
+            color: #545961;
+            border-radius: 1rem;
+            background-color: transparent;
+
+            img {
+                width: 3%;
+                height: auto;
+            }
+
+
+        }
+    }
+}
