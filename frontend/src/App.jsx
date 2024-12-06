@@ -4,10 +4,13 @@ import "./style/style.css";
 import { Main } from "./page/Main";
 import LoginForm from "./components/Login";
 import SignupForm from "./components/SignUp";
+import { ErrorBoundary } from "react-error-boundary";
+
 
 function App() {
   return (
     <>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <BrowserRouter>
         <Routes>
           <Route path="/task" element={<Main />} />
@@ -15,6 +18,7 @@ function App() {
           <Route path="/SignupForm" element={<SignupForm />} />
         </Routes>
       </BrowserRouter>
+      </ErrorBoundary>
     </>
   );
 }
